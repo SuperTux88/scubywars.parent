@@ -1,0 +1,251 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.tdng2010.game</groupId>
+	<artifactId>scubywars.parent</artifactId>
+	<version>0.5-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>scubywars parent pom</name>
+	<url>http://scubywars.de</url>
+
+	<licenses>
+		<license>
+			<name>GPLv3</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Scubywars</name>
+		<url>http://scubywars.de</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Felix Becker</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Benjamin Neff</name>
+			<email>benjamin@coding4coffee.ch</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<ciManagement>
+		<system>hudson</system>
+		<url>http://hudson.coding4coffee.org</url>
+	</ciManagement>
+
+	<scm>
+		<connection>scm:git:git://github.com/fbe/Scubywars-Parentpom.git</connection>
+		<developerConnection>scm:git:git@github.com:fbe/Scubywars-Parentpom.git</developerConnection>
+		<url>https://github.com/fbe/Scubywars-Parentpom</url>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.scala-lang</groupId>
+				<artifactId>scala-library</artifactId>
+				<version>2.8.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.scala-lang</groupId>
+				<artifactId>scala-swing</artifactId>
+				<version>2.8.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.scala-tools</groupId>
+					<artifactId>maven-scala-plugin</artifactId>
+					<version>2.15.0</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>add-source</goal>
+								<goal>compile</goal>
+								<goal>testCompile</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<optimize>true</optimize>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>2.0.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.1</version>
+					<inherited>true</inherited>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true
+								</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true
+								</addDefaultSpecificationEntries>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.dstovall</groupId>
+					<artifactId>onejar-maven-plugin</artifactId>
+					<version>1.4.4.1</version>
+					<configuration>
+						<filename>${project.build.finalName}.runnable.jar</filename>
+					</configuration>
+					<executions>
+						<execution>
+							<id>make-jar</id>
+							<phase>package</phase>
+							<goals>
+								<goal>one-jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.2</version>
+					<executions>
+						<!-- here we override the super-pom attach-sources executionid which 
+							calls sources:jar goal. That goals forks the lifecycle, causing the generate-sources 
+							phase to be called twice for the install goal. This causes any other plugin 
+							bound to the generate-sources phase to be called twice which usually has 
+							nasty side effects, let alone creating duplicate processing and longer build 
+							times. -->
+						<execution>
+							<id>attach-sources</id>
+							<phase>DISABLE_FORKED_LIFECYCLE_MSOURCES-13</phase>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources-no-fork</id>
+						<inherited>true</inherited>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- MSOURCES-13 related workaround overriding super-pom -->
+		<profile>
+			<id>release-profile</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<inherited>true</inherited>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources-no-fork</id>
+								<inherited>true</inherited>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>coding4coffee</id>
+			<url>http://nexus.coding4coffee.org/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>coding4coffee</id>
+			<name>coding4coffee Maven2 Repository</name>
+			<url>http://nexus.coding4coffee.org/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>c4c-releases</id>
+			<name>coding4coffee.org Release Repository</name>
+			<url>http://nexus.coding4coffee.org/content/repositories/releases
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>c4c-snapshots</id>
+			<name>coding4coffee.org Snapshots Repository</name>
+			<url>http://nexus.coding4coffee.org/content/repositories/snapshots
+			</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
