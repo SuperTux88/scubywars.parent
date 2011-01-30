@@ -36,6 +36,24 @@
 				<role>Developer</role>
 			</roles>
 		</developer>
+		<developer>
+			<name>Mathias Kub</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Thorsten Zellmer</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Oliver Jucknath</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
 	</developers>
 
 	<ciManagement>
