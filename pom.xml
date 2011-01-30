@@ -3,7 +3,7 @@
 
 	<groupId>de.tdng2010.game</groupId>
 	<artifactId>scubywars.parent</artifactId>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.5</version>
 	<packaging>pom</packaging>
 
 	<name>scubywars parent pom</name>
