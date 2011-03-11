@@ -57,9 +57,14 @@
 	</developers>
 
 	<ciManagement>
-		<system>hudson</system>
-		<url>http://hudson.coding4coffee.org</url>
+		<system>jenkins</system>
+		<url>http://jenkins.scubywars.de</url>
 	</ciManagement>
+
+	<issueManagement>
+		<system>jira</system>
+		<url>http://jira.scubywars.de</url>
+	</issueManagement>
 
 	<scm>
 		<connection>scm:git:git://github.com/fbe/Scubywars-Parentpom.git</connection>
@@ -83,23 +88,23 @@
 				<artifactId>scala-swing</artifactId>
 				<version>2.8.1</version>
 			</dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.16</version>
-            </dependency>
-            <dependency>
-                <groupId>org.scalatest</groupId>
-                <artifactId>scalatest</artifactId>
-                <version>1.3</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.8.2</version>
-                <scope>test</scope>
-            </dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.16</version>
+			</dependency>
+			<dependency>
+				<groupId>org.scalatest</groupId>
+				<artifactId>scalatest</artifactId>
+				<version>1.3</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.8.2</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
