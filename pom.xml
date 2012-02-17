@@ -67,9 +67,9 @@
 	</issueManagement>
 
 	<scm>
-		<connection>scm:git:git://github.com/fbe/Scubywars-Parentpom.git</connection>
-		<developerConnection>scm:git:git@github.com:fbe/Scubywars-Parentpom.git</developerConnection>
-		<url>https://github.com/fbe/Scubywars-Parentpom</url>
+		<connection>scm:git:git://github.com/SuperTux88/scubywars.parent.git</connection>
+		<developerConnection>scm:git:git@github.com:SuperTux88/scubywars.parent.git</developerConnection>
+		<url>https://github.com/SuperTux88/scubywars.parent</url>
 	</scm>
 
 	<properties>
