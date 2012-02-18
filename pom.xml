@@ -216,6 +216,7 @@
                                             <goal>add-source</goal>
                                             <goal>compile</goal>
                                             <goal>testCompile</goal>
+                                            <goal>doc</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
