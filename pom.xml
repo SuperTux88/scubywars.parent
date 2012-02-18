@@ -313,7 +313,6 @@
 			<name>coding4coffee.org Snapshots Repository</name>
 			<url>http://nexus.coding4coffee.org/content/repositories/snapshots
 			</url>
-			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 	</distributionManagement>
 </project>
