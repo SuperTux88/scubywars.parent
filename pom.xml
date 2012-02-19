@@ -121,7 +121,6 @@
 								<goal>add-source</goal>
 								<goal>compile</goal>
 								<goal>testCompile</goal>
-                                            			<goal>doc</goal>
 							</goals>
 						</execution>
 					</executions>
@@ -139,7 +138,26 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>2.0.1</version>
+					<version>3.0</version>
+					<configuration>
+						<reportPlugins>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-javadoc-plugin</artifactId>
+								<version>2.8</version>
+								<configuration>
+									<detectJavaApiLink>false</detectJavaApiLink>
+									<links>
+										<link>http://download.oracle.com/javase/6/docs/api</link>
+									</links>
+								</configuration>
+							</plugin>
+							<plugin>
+								<groupId>org.scala-tools</groupId>
+								<artifactId>maven-scala-plugin</artifactId>
+							</plugin>
+						</reportPlugins>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
