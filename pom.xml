@@ -188,7 +188,7 @@
 				<plugin>
 					<groupId>org.dstovall</groupId>
 					<artifactId>onejar-maven-plugin</artifactId>
-					<version>1.4.4.1</version>
+					<version>1.4.4.2</version>
 					<configuration>
 						<filename>${project.build.finalName}.runnable.jar</filename>
 					</configuration>
