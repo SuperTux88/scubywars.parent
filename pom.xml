@@ -61,11 +61,6 @@
 		<url>http://jenkins.scubywars.de</url>
 	</ciManagement>
 
-	<issueManagement>
-		<system>jira</system>
-		<url>http://jira.scubywars.de</url>
-	</issueManagement>
-
 	<scm>
 		<connection>scm:git:git://github.com/SuperTux88/scubywars.parent.git</connection>
 		<developerConnection>scm:git:git@github.com:SuperTux88/scubywars.parent.git</developerConnection>
@@ -138,7 +133,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.0</version>
+					<version>3.4</version>
 					<configuration>
 						<reportPlugins>
 							<plugin>
